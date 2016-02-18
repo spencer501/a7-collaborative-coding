@@ -1,0 +1,1 @@
+# Function that returns the first chart
