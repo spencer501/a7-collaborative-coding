@@ -1,5 +1,23 @@
 ---
-title: "Star Wars"
+title: "Collaborative Coding"
 output: html_document
 ---
 
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Initial set up
+
+# needed libraries
+library(dplyr)
+
+# Analysis file
+source('scripts/analysis.R')
+
+# Data set
+dataset <- read.csv("https://raw.githubusercontent.com/INFO-498F/a7-survey-data/master/intro_survey_data.csv")
+
+# Get information about data set
+info <- info_function(dataset)
+
+
+```
