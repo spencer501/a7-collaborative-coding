@@ -1,18 +1,12 @@
 # Calculates summary information to be included in report
 
-### TODO: Wrap in function ###
-
 # needed libraries
 library(dplyr)
 
-data <- read.csv("https://raw.githubusercontent.com/INFO-498F/a7-survey-data/master/intro_survey_data.csv")
+info_function <- function(dataset) {
 
 # List to return
 ret <- list()
-
-# Find dimensions of data
-ret$length <- ncol(data)
-ret$observations <- nrow(data)
 
 # Equivalency lists:
 ## - Create tables to convert responses from the original data frame to responses that are more succinct / numerically
@@ -24,7 +18,7 @@ equiv$scale3 <- data.frame(
                   "Have used it a few times",
                   "Intermediate user"),
    'new' = c(1:3)
-)
+   )
 
 equiv$programming <-
    data.frame(
@@ -35,7 +29,7 @@ equiv$programming <-
          "Lots of experience with a scripting language (Python, R, JavaScript, Java, etc.)"
       ),
       'new' = c(1:4)
-   )
+      )
 
 equiv$pet <- data.frame(
    'original' = c("A dog person...",
@@ -46,19 +40,21 @@ equiv$pet <- data.frame(
              "cat",
              "both",
              "neither")
-)
+   )
 
-equiv$seahawks <- data.frame('original' = c("No",
-                                            "Yes",
-                                            "YES!"),
-                             'new' = c(1:3))
+equiv$seahawks <- data.frame(
+   'original' = c("No",
+                  "Yes",
+                  "YES!"),
+   'new' = c(1:3)
+   )
 
                                      
 # Format data:
 ## - Renames all the columns to more succinct names
 ## - Change responses that are part of a scale (ex: experiece with git, command line, r, ect.) to have actual numeric
 ##   value
-f_data <- data %>%
+clean_data <- dataset %>%
    rename(
       "standing" = What.is.your.current.class.standing.,
       "applying" = Are.you.interested.in.applying.to.the.Informatics.major.,
@@ -73,28 +69,34 @@ f_data <- data %>%
       "seahawks" = Are.you.a.Seahawks.fan.
    )
 
-#### NOTE: This is the desired functionality. However, do to what I believe is an error in 'dplyr'
-#### (found at https://github.com/hadley/dplyr/issues/1400), this produces the error 'invalid subscript type 'closure''.
+#### NOTE: This is the desired functionality. However, due to what I believe is an error in 'dplyr'
+#### (found at https://github.com/hadley/dplyr/issues/1400), this produces the error `invalid subscript type 'closure'`.
 #### For now, even though it is not the best practice, these mutations will be run line by line.
-# f_data <- f_data %>%
-#    mutate(command_line = equiv$scale3$new[match(f_data$command_line, equiv$scale3$original)],
-#           git = equiv$scale3$new[match(f_data$git, equiv$scale3$original)],
-#           markdown = equiv$scale3$new[match(f_data$markdown, equiv$scale3$original)],
-#           r_language = equiv$scale3$new[match(f_data$r_language, equiv$scale3$original)],
-#           programming = equiv$programming$new[match(f_data$programming, equiv$programming$original)],
-#           cat_v_dog = equiv$pet$new[match(f_data$cat_v_dog, equiv$pet$original)],
-#           seahawks = equiv$seahawks$new[match(f_data$seahawks, equiv$seahawks$original)])
-
-f_data$command_line = equiv$scale3$new[match(f_data$command_line, equiv$scale3$original)]
-f_data$git = equiv$scale3$new[match(f_data$git, equiv$scale3$original)]
-f_data$markdown = equiv$scale3$new[match(f_data$markdown, equiv$scale3$original)]
-f_data$r_language = equiv$scale3$new[match(f_data$r_language, equiv$scale3$original)]
-f_data$programming = equiv$programming$new[match(f_data$programming, equiv$programming$original)]
-f_data$cat_v_dog = equiv$pet$new[match(f_data$cat_v_dog, equiv$pet$original)]
-f_data$seahawks = equiv$seahawks$new[match(f_data$seahawks, equiv$seahawks$original)]
+clean_data$command_line = equiv$scale3$new[match(clean_data$command_line, equiv$scale3$original)]
+clean_data$git = equiv$scale3$new[match(clean_data$git, equiv$scale3$original)]
+clean_data$markdown = equiv$scale3$new[match(clean_data$markdown, equiv$scale3$original)]
+clean_data$r_language = equiv$scale3$new[match(clean_data$r_language, equiv$scale3$original)]
+clean_data$programming = equiv$programming$new[match(clean_data$programming, equiv$programming$original)]
+clean_data$cat_v_dog = equiv$pet$new[match(clean_data$cat_v_dog, equiv$pet$original)]
+clean_data$seahawks = equiv$seahawks$new[match(clean_data$seahawks, equiv$seahawks$original)]
 
 
+# Add information to the return list
 
+## - Formatted data
+ret$data <- clean_data
+
+## - Dimensions of data
+ret$columns <- ncol(clean_data)
+ret$rows <- nrow(clean_data)
+
+## - List of equivalencies to convert numerical data back to original question
+ret$equivalent <- equiv
+
+# Return list of various information
+return(ret)
+
+}
 
 
 
