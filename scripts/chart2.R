@@ -2,11 +2,11 @@
 library(plotly)
 library(dplyr)
 
-build_second_chart <- function(dataf) {
-  freshman  <- info$dataf %>% filter(standing == "Freshman")
-  sophomore <- info$dataf %>% filter(standing == "Sophomore")
-  junior    <- info$dataf %>% filter(standing == "Junior")
-  senior    <- info$dataf %>% filter(standing == "Senior")
+build_second_chart <- function(data) {
+  freshman  <- data %>% filter(standing == "Freshman")
+  sophomore <- data %>% filter(standing == "Sophomore")
+  junior    <- data %>% filter(standing == "Junior")
+  senior    <- data %>% filter(standing == "Senior")
   
   chart <- plot_ly(y = freshman$countries, 
                    type = "box", 
