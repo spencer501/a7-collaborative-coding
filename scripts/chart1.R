@@ -1,7 +1,7 @@
 # Function that returns the first chart\# Function that returns the first chart
 library(plotly)
 
-build_chart <- function(dataf){
+build_chart <- function(data){
   chart1 <- plot_ly(data = info$dataf, 
                     x = info$dataf$command_line, 
                     y = info$dataf$r_language, 
@@ -11,6 +11,13 @@ build_chart <- function(dataf){
                     )
   return(chart1)
 }
+
+
+# Stacked Bar Plot with Colors and Legend
+counts <- table(mtcars$vs, mtcars$gear)
+barplot(counts, main="Car Distribution by Gears and VS",
+        xlab="Number of Gears", col=c("darkblue","red"),
+        legend = rownames(counts))
 
 chart2 <- function (dataf){
   charts <- info$data %>% 
