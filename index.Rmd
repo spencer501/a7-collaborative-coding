@@ -20,10 +20,10 @@ source('scripts/chart2.R')
 dataset <- read.csv("https://raw.githubusercontent.com/INFO-498F/a7-survey-data/master/intro_survey_data.csv")
 
 # Get information about data set
-info <- info_function(dataset)
+info_list <- info_function(dataset)
 
 # Get cleaned data from returned info
-data <- info$data
+data <- info_list$data
 ```
 
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
