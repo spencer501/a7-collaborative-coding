@@ -41,6 +41,8 @@ These students were asked to complete a **`r info_list$columns`** question surve
 
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 # Builds first chart
+chart_data <- info_list$r_exp_by_standing
+scale_name <- info_list$equivalent$scale3
 build_chart(info_list$r_exp_by_standing)
 
 ```
