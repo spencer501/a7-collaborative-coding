@@ -3,6 +3,11 @@
 # needed libraries
 library(dplyr)
 
+#temp
+dataset <- read.csv("https://raw.githubusercontent.com/INFO-498F/a7-survey-data/master/intro_survey_data.csv")
+
+
+# Function to return inifomation about given intro survey dataset
 info_function <- function(dataset) {
 
 # List to return
@@ -13,11 +18,12 @@ ret <- list()
 ##   significant
 equiv <- list()
 
-equiv$scale3 <- data.frame(
-   'original' = c("Never used it",
-                  "Have used it a few times",
-                  "Intermediate user"),
-   'new' = c(1:3)
+equiv$scale3 <-
+   data.frame(
+      'original' = c("Never used it",
+                     "Have used it a few times",
+                     "Intermediate user"),
+      'new' = c(1:3)
    )
 
 equiv$programming <-
@@ -81,8 +87,15 @@ clean_data$cat_v_dog = equiv$pet$new[match(clean_data$cat_v_dog, equiv$pet$origi
 clean_data$seahawks = equiv$seahawks$new[match(clean_data$seahawks, equiv$seahawks$original)]
 
 
-# Add information to the return list
+# Perform summary analysis:
+## - By class standing
+class_standing <- clean_data %>% 
+   group_by(standing) %>% 
+   summarise(length(applying)) %>% 
+   rename("Number of Students" = `length(applying)`)
 
+
+# Add information to the return list
 ## - Formatted data
 ret$data <- clean_data
 
@@ -92,6 +105,9 @@ ret$rows <- nrow(clean_data)
 
 ## - List of equivalencies to convert numerical data back to original question
 ret$equivalent <- equiv
+
+## - Class standing
+ret$class_standing <- class_standing
 
 # Return list of various information
 return(ret)
