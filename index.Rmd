@@ -21,6 +21,9 @@ dataset <- read.csv("https://raw.githubusercontent.com/INFO-498F/a7-survey-data/
 
 # Get information about data set
 info <- info_function(dataset)
+
+# Get cleaned data from returned info
+data <- info$data
 ```
 
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
@@ -31,5 +34,5 @@ info <- info_function(dataset)
 This is a box chart showcasing the total countries visited by students based off class standing.
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 # Builds second chart
-build_second_chart(info$dataf)
+build_second_chart(data)
 ```
