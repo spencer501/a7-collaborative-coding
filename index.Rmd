@@ -48,5 +48,5 @@ answers.
 This is a box chart showcasing the total countries visited by students based off class standing.
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 # Builds second chart
-#build_second_chart(data)
+build_second_chart(data)
 ```
