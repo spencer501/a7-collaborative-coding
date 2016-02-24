@@ -30,7 +30,7 @@ info_list <- info_function(dataset)
 data <- info_list$data
 ```
 
-#### In the **INFO498f** class, there are **`r info_list$rows`** students. The class is composed of: 
+#### In the **INFO498f** class, there are **`r info_list$rows`** students who completed the survey. The class is composed of: 
 `r kable(info_list$class_standing)`
 
 &nbsp;
