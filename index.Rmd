@@ -3,6 +3,7 @@ title: "Collaborative Coding"
 output: html_document
 ---
 
+&nbsp;
 
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 # Initial set up
@@ -10,6 +11,7 @@ output: html_document
 # needed libraries
 library(dplyr)
 library(plotly)
+library(knitr)
 
 # sources
 source('scripts/analysis.R')
@@ -26,13 +28,25 @@ info_list <- info_function(dataset)
 data <- info_list$data
 ```
 
+In the **INFO498f** class, there are **`r info_list$rows`** students. The basic composition of the class is:
+`r kable(info_list$class_standing)`
+
+&nbsp;
+
+These students were asked to complete a **`r info_list$columns`** question survey. Below is an analysis of their
+answers.
+
+&nbsp;
+
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 # Builds first chart
 
 ```
 
+
+
 This is a box chart showcasing the total countries visited by students based off class standing.
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 # Builds second chart
-build_second_chart(data)
+#build_second_chart(data)
 ```
