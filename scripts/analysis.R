@@ -94,6 +94,13 @@ class_standing <- clean_data %>%
    summarise(length(applying)) %>% 
    rename("Number of Students" = `length(applying)`)
 
+## - By class standing and r experience
+class_standing_r <- clean_data %>% 
+   group_by(standing, r_language) %>% 
+   summarise(length(r_language)) %>% 
+   rename("R Experience" = r_language,
+          "Responses" = `length(r_language)`)
+
 
 # Add information to the return list
 ## - Formatted data
@@ -108,6 +115,9 @@ ret$equivalent <- equiv
 
 ## - Class standing
 ret$class_standing <- class_standing
+
+## - Experience with R grouped by class standing
+ret$r_exp_by_standing <- class_standing_r
 
 # Return list of various information
 return(ret)
