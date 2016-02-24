@@ -30,19 +30,18 @@ info_list <- info_function(dataset)
 data <- info_list$data
 ```
 
-### In the **INFO498f** class, there are **`r info_list$rows`** students. The class is composed of: 
+#### In the **INFO498f** class, there are **`r info_list$rows`** students. The class is composed of: 
 `r kable(info_list$class_standing)`
 
 &nbsp;
 
 These students were asked to complete a **`r info_list$columns`** question survey at the beginning of the quarter. Below is an analysis of their answers.
 
-&nbsp;
+### Chart 1
 
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 # Builds first chart
-c1_data <- info_list$r_exp_by_standing
-
+build_chart(info_list$r_exp_by_standing)
 
 ```
 
