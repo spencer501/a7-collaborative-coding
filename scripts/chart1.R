@@ -14,10 +14,10 @@ build_chart <- function(data){
 
 
 # Stacked Bar Plot with Colors and Legend
-counts <- table(mtcars$vs, mtcars$gear)
-barplot(counts, main="Car Distribution by Gears and VS",
-        xlab="Number of Gears", col=c("darkblue","red"),
-        legend = rownames(counts))
+#counts <- table(mtcars$vs, mtcars$gear)
+#barplot(counts, main="Car Distribution by Gears and VS",
+        #xlab="Number of Gears", col=c("darkblue","red"),
+        #legend = rownames(counts))
 
 chart2 <- function (dataf){
   charts <- info$data %>% 
