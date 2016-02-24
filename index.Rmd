@@ -3,6 +3,8 @@ title: "Collaborative Coding"
 output: html_document
 ---
 
+# Analysis of *Intro Survey Data*
+
 &nbsp;
 
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
@@ -28,24 +30,24 @@ info_list <- info_function(dataset)
 data <- info_list$data
 ```
 
-In the **INFO498f** class, there are **`r info_list$rows`** students. The basic composition of the class is:
+### In the **INFO498f** class, there are **`r info_list$rows`** students. The class is composed of: 
 `r kable(info_list$class_standing)`
 
 &nbsp;
 
-These students were asked to complete a **`r info_list$columns`** question survey. Below is an analysis of their
-answers.
+These students were asked to complete a **`r info_list$columns`** question survey at the beginning of the quarter. Below is an analysis of their answers.
 
 &nbsp;
 
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 # Builds first chart
-chart_one <- info_list$r_exp_by_standing
-build_chart(chart_one)
+c1_data <- info_list$r_exp_by_standing
+
 
 ```
 
 
+### Chart 2
 
 This is a box chart showcasing the total countries visited by students based off class standing.
 ```{r, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
