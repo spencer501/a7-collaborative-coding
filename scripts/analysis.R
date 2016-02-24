@@ -3,10 +3,6 @@
 # needed libraries
 library(dplyr)
 
-#temp
-dataset <- read.csv("https://raw.githubusercontent.com/INFO-498F/a7-survey-data/master/intro_survey_data.csv")
-
-
 # Function to return inifomation about given intro survey dataset
 info_function <- function(dataset) {
 
@@ -101,6 +97,13 @@ class_standing_r <- clean_data %>%
    rename("R Experience" = r_language,
           "Responses" = `length(r_language)`)
 
+## - By standing and seahawks fan
+seahawks_by_standing <- clean_data %>% 
+   filter(seahawks == 3) %>%
+   select(standing, seahawks) %>% 
+   group_by(standing) %>% 
+   summarise(length(seahawks))
+
 
 # Add information to the return list
 ## - Formatted data
@@ -118,6 +121,9 @@ ret$class_standing <- class_standing
 
 ## - Experience with R grouped by class standing
 ret$r_exp_by_standing <- class_standing_r
+
+## - Number of biggest Seahawks fans by each standing
+ret$seahawks_fans <- seahawks_by_standing
 
 # Return list of various information
 return(ret)
